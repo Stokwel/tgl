@@ -150,6 +150,13 @@ messageActionChatJoinedByLink#f89cf5e8 inviter_id:int = MessageAction;
 messageActionChannelCreate#95d2ac92 title:string = MessageAction;
 messageActionChatMigrateTo#51bdb021 channel_id:int = MessageAction;
 messageActionChannelMigrateFrom#b055eaee title:string chat_id:int = MessageAction;
+messageActionPinMessage#94bd38ed = MessageAction;
+messageActionHistoryClear#9fbab604 = MessageAction;
+messageActionGameScore#92a72876 game_id:long score:int = MessageAction;
+messageActionPaymentSentMe#8f31b327 flags:# currency:string total_amount:long payload:bytes info:flags.0?PaymentRequestedInfo shipping_option_id:flags.1?string charge:PaymentCharge = MessageAction;
+messageActionPaymentSent#40699cd0 currency:string total_amount:long = MessageAction;
+messageActionPhoneCall#80e11a7f flags:# call_id:long reason:flags.0?PhoneCallDiscardReason duration:flags.1?int = MessageAction;
+messageActionScreenshotTaken#4792929b = MessageAction;
 
 dialog#c1dd804a peer:Peer top_message:int read_inbox_max_id:int unread_count:int notify_settings:PeerNotifySettings = Dialog;
 dialogChannel#5b8496b2 peer:Peer top_message:int top_important_message:int read_inbox_max_id:int unread_count:int unread_important_count:int notify_settings:PeerNotifySettings pts:int = Dialog;
@@ -467,12 +474,20 @@ botInfoEmpty#bb2e37ce = BotInfo;
 botInfo#9cf585d user_id:int version:int share_text:string description:string commands:Vector<BotCommand> = BotInfo;
 
 keyboardButton#a2fa4880 text:string = KeyboardButton;
+keyboardButtonUrl#258aff05 text:string url:string = KeyboardButton;
+keyboardButtonCallback#683a5e46 text:string data:bytes = KeyboardButton;
+keyboardButtonRequestPhone#b16a6c29 text:string = KeyboardButton;
+keyboardButtonRequestGeoLocation#fc796b3f text:string = KeyboardButton;
+keyboardButtonSwitchInline#568a748 flags:# same_peer:flags.0?true text:string query:string = KeyboardButton;
+keyboardButtonGame#50f41ccf text:string = KeyboardButton;
+keyboardButtonBuy#afd93fbb text:string = KeyboardButton;
 
 keyboardButtonRow#77608b83 buttons:Vector<KeyboardButton> = KeyboardButtonRow;
 
 replyKeyboardHide#a03e5b85 flags:# selective:flags.2?true = ReplyMarkup;
 replyKeyboardForceReply#f4108aa0 flags:# single_use:flags.1?true selective:flags.2?true = ReplyMarkup;
 replyKeyboardMarkup#3502758c flags:# resize:flags.0?true single_use:flags.1?true selective:flags.2?true rows:Vector<KeyboardButtonRow> = ReplyMarkup;
+replyInlineMarkup#48a30254 rows:Vector<KeyboardButtonRow> = ReplyMarkup;
 
 help.appChangelogEmpty#af7e0394 = help.AppChangelog;
 help.appChangelog#4668e6bd text:string = help.AppChangelog;
@@ -549,6 +564,17 @@ botInlineMediaResultPhoto#c5528587 id:string type:string photo:Photo send_messag
 botInlineResult#9bebaeb9 flags:# id:string type:string title:flags.1?string description:flags.2?string url:flags.3?string thumb_url:flags.4?string content_url:flags.5?string content_type:flags.5?string w:flags.6?int h:flags.6?int duration:flags.7?int send_message:BotInlineMessage = BotInlineResult;
 
 messages.botResults#1170b0a3 flags:# gallery:flags.0?true query_id:long next_offset:flags.1?string results:Vector<BotInlineResult> = messages.BotResults;
+
+phoneCallDiscardReasonMissed#85e42301 = PhoneCallDiscardReason;
+phoneCallDiscardReasonDisconnect#e095c1a0 = PhoneCallDiscardReason;
+phoneCallDiscardReasonHangup#57adc690 = PhoneCallDiscardReason;
+phoneCallDiscardReasonBusy#faf7e8c9 = PhoneCallDiscardReason;
+
+paymentCharge#ea02c27e id:string provider_charge_id:string = PaymentCharge;
+
+postAddress#1e8caaeb street_line1:string street_line2:string city:string state:string country_iso2:string post_code:string = PostAddress;
+
+paymentRequestedInfo#909c3f94 flags:# name:flags.0?string phone:flags.1?string email:flags.2?string shipping_address:flags.3?PostAddress = PaymentRequestedInfo;
 
 ---functions---
 

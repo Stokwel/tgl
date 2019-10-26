@@ -1039,7 +1039,14 @@ void tglf_fetch_message_action (struct tgl_state *TLS, struct tgl_message_action
   memset (M, 0, sizeof (*M));
   
   switch (DS_MA->magic) {
-  case CODE_message_action_empty:
+  case CODE_message_action_empt
+  case CODE_message_action_pin_message:
+  case CODE_message_action_history_clear:
+  case CODE_message_action_game_score:
+  case CODE_message_action_payment_sent_me:
+  case CODE_message_action_payment_sent:
+  case CODE_message_action_phone_call:
+  case CODE_message_action_screenshot_taken:
     M->type = tgl_message_action_none;
     break;
   /*case CODE_message_action_geo_chat_create:
